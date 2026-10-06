@@ -44,8 +44,13 @@ lib/firebase_options.dart
 
 
 # Firebase config — contains API keys
+firebase.json
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# GTM container files — sensitive, each developer downloads their own
+ios/container/
+android/app/src/main/assets/containers/
 
 # dev-flow feature state
 docs/features/
