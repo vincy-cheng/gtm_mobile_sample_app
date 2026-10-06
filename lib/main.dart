@@ -9,7 +9,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
-        name: 'gtm_mobile_sample_app',
         options: DefaultFirebaseOptions.currentPlatform);
   }
   runApp(const MyApp());
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // title: 'Flutter Demo',
+      navigatorObservers: [observer],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(
         title: 'Firebase Analytics Demo',
         analytics: analytics,
-        observer: observer,
       ),
     );
   }
@@ -46,12 +44,10 @@ class MyHomePage extends StatefulWidget {
     Key? key,
     required this.title,
     required this.analytics,
-    required this.observer,
   }) : super(key: key);
 
   final String title;
   final FirebaseAnalytics analytics;
-  final FirebaseAnalyticsObserver observer;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -73,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#public-void-logevent-string-name,-bundle-params
     await widget.analytics.logEvent(
       name: 'test_event',
-      parameters: <String, dynamic>{
+      parameters: <String, Object>{
         'string': 'string',
         'int': 42,
         'long': 12345678910,

@@ -23,7 +23,15 @@ samples, guidance on mobile development, and a full API reference.
 - GTM container for Android ([Reference](https://developers.google.com/tag-platform/tag-manager/android/v5))
 - GTM container for iOS ([Reference](https://developers.google.com/tag-platform/tag-manager/ios/v5))
 
-2. Download the selected container version (GTM-XXXXXXXX.json) and place them under ```app/src/main/assets/containers/GTM-XXXXXX.json``` folder (android) and ```PROJECT_ROOT/container/GTM-XXXXXX.json```folder (iOS)
+2. Download the selected container version (GTM-XXXXXXXX.json) and place them under ```app/src/main/assets/containers/GTM-XXXXXX.json``` folder (android) and ```ios/container/GTM-XXXXXX.json```folder (iOS)
+
+3. **(iOS only)** The `ios/container/` folder must be added to the Runner target in Xcode, otherwise the app crashes at launch with:
+
+   ```
+   GoogleTagManager warning: No default container found. Container needs to be added to a container folder and added to the target.
+   ```
+
+   In Xcode: drag the `ios/container` folder into the Runner target (choose "Create folder references", and check "Runner" under *Add to targets*). It should then appear under *Build Phases → Copy Bundle Resources*.
 
 ## Local development
 
